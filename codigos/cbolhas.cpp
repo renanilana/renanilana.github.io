@@ -58,6 +58,7 @@ for (int i=0; i<height; i++){ //bordas das laterais
 
 
 imshow("imagem sem bordas", image);
+imwrite("semborda.png", image);
 waitKey();
 
 //conta todas as bolhas e pinta de tons de cinza
@@ -78,6 +79,7 @@ waitKey();
 
 
 imshow("bolhas cinzas", image);
+imwrite("bolhacinza.png", image);
 waitKey();
 
 
@@ -89,7 +91,7 @@ if (image.at<uchar>(p) == 0)
 floodFill(image,p,254);
 
 //conta bolhas com buracos
-int bu=0;
+
 nburacos=0;
  for(int i=0; i<height; i++){
     for(int j=0; j<width; j++){
@@ -98,16 +100,15 @@ nburacos=0;
                 p.x=j-1;
 		p.y=i;
 		floodFill(image,p,nburacos);}
-if  (image.at<uchar>(i,j) ==0)
-bu++;
 
-}}
+	}
+}
 
 imshow("imagem fim", image);
- // imwrite("labeling.png", image);
+ imwrite("bolhafinal.png", image);
   waitKey();
 
-cout << "Total de bolhas: "<<nbolhas << endl<<"Bolhas com buracos: "<<nburacos<<endl <<bu;
+cout << "Total de bolhas: "<<nbolhas << endl<<"Bolhas com buracos: "<<nburacos<<endl;
 
   return 0;
 
