@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.6.1">
-<meta name="author" content="Alunos: Ilana Júlia de Medeiros Barreto e Renan Saatman">
+<meta name="author" content="Alunos: Ilana Júlia de Medeiros Barreto e Renan Saatman Maia">
 <title>Atividades PDI</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -497,11 +497,29 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .listingblock .pygments .tok-il { color: #666666 } /* Literal.Number.Integer.Long */
 </style>
 </head>
-<body class="article">
+<body class="article toc2 toc-left">
 <div id="header">
 <h1>Atividades PDI</h1>
 <div class="details">
-<span id="author" class="author">Alunos: Ilana Júlia de Medeiros Barreto e Renan Saatman</span><br>
+<span id="author" class="author">Alunos: Ilana Júlia de Medeiros Barreto e Renan Saatman Maia</span><br>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Sumário</div>
+<ul class="sectlevel1">
+<li><a href="#_1_considerações_iniciais">1. Considerações iniciais</a></li>
+<li><a href="#_2_manipulando_pixels_em_uma_imagem">2. Manipulando pixels em uma imagem</a>
+<ul class="sectlevel2">
+<li><a href="#_2_1_regions_cpp">2.1. regions.cpp</a></li>
+<li><a href="#_2_2_trocaregioes_cpp">2.2. trocaregioes.cpp</a></li>
+</ul>
+</li>
+<li><a href="#_3_rotulando_objetos">3. Rotulando objetos</a>
+<ul class="sectlevel2">
+<li><a href="#_3_1_mais_de_255_objetos">3.1 Mais de 255 objetos</a></li>
+<li><a href="#_3_2_contabolhas_cppp">3.2 contabolhas.cppp</a></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 <div id="content">
@@ -523,7 +541,7 @@ $ ./&lt;Nome_do_arquivo_cpp&gt;</pre>
 <h2 id="_2_manipulando_pixels_em_uma_imagem">2. Manipulando pixels em uma imagem</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_2_1_regions_cpp">2.1. regions.cpp ====</h3>
+<h3 id="_2_1_regions_cpp">2.1. regions.cpp</h3>
 <div class="paragraph">
 <p>O primeiro exercício consta na troca das cores de um a determinada região pelo seu correpondente negativo utilizando como referência o código <a href="https://renanilana.github.io/codigos/pixels.cpp">pixels.cpp</a>. O programa <a href="https://renanilana.github.io/codigos/regions.cpp">regions.cpp</a> inicialmente conta a quantidade de linhas e colunas da imagem utilizada e solicita ao usuário que forneça as coordenadas de dois pontos, P1 e P2, de forma a construir um retângulo que exibirá o negativo da imagem na região correspondente. Note que não é possível fornecer coordenadas de um ponto que não pertença à imagem.</p>
 </div>
@@ -619,8 +637,101 @@ $ ./&lt;Nome_do_arquivo_cpp&gt;</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_2_1_trocaregions_cpp">2.1. trocaregions.cpp</h3>
+<h3 id="_2_2_trocaregioes_cpp">2.2. trocaregioes.cpp</h3>
+<div class="paragraph">
+<p>O segundo exercício consta na troca de quadrantes de uma imagem de forma diagonal utilizando como referência o código <a href="https://renanilana.github.io/codigos/pixels.cpp">pixels.cpp</a>. O programa <a href="https://renanilana.github.io/codigos/trocaregioes.cpp">trocaregioes.cpp</a> inicialmente conta a quantidade de linhas e colunas da imagem. A partir desses valores é possível encontrar o ponto médio do plano X e Y, conseguindo assim fazer a troca do quadrante 1 com o 3 e do quadrante 2 com o 4.</p>
+</div>
+<div id="exa_trocaregioes" class="listingblock">
+<div class="title">trocaregioes.cpp</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-cp">#include</span> <span class="tok-cpf">&lt;iostream&gt;</span><span class="tok-cp"></span>
+<span class="tok-cp">#include</span> <span class="tok-cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="tok-cp"></span>
 
+<span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">cv</span><span class="tok-p">;</span>
+<span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">std</span><span class="tok-p">;</span>
+
+<span class="tok-kt">int</span> <span class="tok-nf">main</span><span class="tok-p">(</span><span class="tok-kt">int</span><span class="tok-p">,</span> <span class="tok-kt">char</span><span class="tok-o">**</span><span class="tok-p">){</span>
+  <span class="tok-n">Mat</span> <span class="tok-n">image</span><span class="tok-p">,</span> <span class="tok-n">aux</span><span class="tok-p">;</span>
+  <span class="tok-n">Vec3b</span> <span class="tok-n">val</span><span class="tok-p">;</span>
+
+  <span class="tok-n">image</span> <span class="tok-o">=</span> <span class="tok-n">imread</span><span class="tok-p">(</span><span class="tok-s">&quot;biel.png&quot;</span><span class="tok-p">,</span><span class="tok-n">CV_LOAD_IMAGE_GRAYSCALE</span><span class="tok-p">);</span>
+  <span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-o">!</span><span class="tok-n">image</span><span class="tok-p">.</span><span class="tok-n">data</span><span class="tok-p">)</span>
+    <span class="tok-n">cout</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-s">&quot;nao abriu biel.png&quot;</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-n">endl</span><span class="tok-p">;</span>
+
+  <span class="tok-n">aux</span> <span class="tok-o">=</span> <span class="tok-n">imread</span><span class="tok-p">(</span><span class="tok-s">&quot;biel.png&quot;</span><span class="tok-p">,</span><span class="tok-n">CV_LOAD_IMAGE_GRAYSCALE</span><span class="tok-p">);</span>
+  <span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-o">!</span><span class="tok-n">aux</span><span class="tok-p">.</span><span class="tok-n">data</span><span class="tok-p">)</span>
+    <span class="tok-n">cout</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-s">&quot;nao abriu biel.png&quot;</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-n">endl</span><span class="tok-p">;</span>
+  <span class="tok-n">namedWindow</span><span class="tok-p">(</span><span class="tok-s">&quot;janela&quot;</span><span class="tok-p">,</span><span class="tok-n">WINDOW_AUTOSIZE</span><span class="tok-p">);</span>
+
+  <span class="tok-c1">//linhas e colunas</span>
+  <span class="tok-kt">int</span> <span class="tok-n">row</span><span class="tok-p">,</span> <span class="tok-n">col</span><span class="tok-p">,</span> <span class="tok-n">mrow</span><span class="tok-p">,</span> <span class="tok-n">mcol</span><span class="tok-p">;</span>
+  <span class="tok-n">row</span> <span class="tok-o">=</span> <span class="tok-kt">int</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">.</span><span class="tok-n">rows</span><span class="tok-p">);</span>
+  <span class="tok-n">col</span> <span class="tok-o">=</span> <span class="tok-kt">int</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">.</span><span class="tok-n">cols</span><span class="tok-p">);</span>
+  <span class="tok-n">mrow</span> <span class="tok-o">=</span> <span class="tok-n">row</span><span class="tok-o">/</span><span class="tok-mi">2</span><span class="tok-p">;</span>
+  <span class="tok-n">mcol</span> <span class="tok-o">=</span> <span class="tok-n">col</span><span class="tok-o">/</span><span class="tok-mi">2</span><span class="tok-p">;</span>
+
+  <span class="tok-n">imshow</span><span class="tok-p">(</span><span class="tok-s">&quot;janela&quot;</span><span class="tok-p">,</span> <span class="tok-n">image</span><span class="tok-p">);</span>
+  <span class="tok-n">waitKey</span><span class="tok-p">();</span>
+
+  <span class="tok-c1">// QUADRANTES:</span>
+
+  <span class="tok-c1">//    2     |    1</span>
+  <span class="tok-c1">// ------------------</span>
+  <span class="tok-c1">//    3     |    4</span>
+
+  <span class="tok-c1">//primeiro quadrante</span>
+  <span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">i</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span><span class="tok-n">i</span><span class="tok-o">&lt;</span><span class="tok-n">mrow</span><span class="tok-p">;</span><span class="tok-n">i</span><span class="tok-o">++</span><span class="tok-p">){</span>
+    <span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">j</span><span class="tok-o">=</span><span class="tok-n">mcol</span><span class="tok-p">;</span><span class="tok-n">j</span><span class="tok-o">&lt;</span><span class="tok-n">col</span><span class="tok-p">;</span><span class="tok-n">j</span><span class="tok-o">++</span><span class="tok-p">){</span>
+      <span class="tok-n">image</span><span class="tok-p">.</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-n">uchar</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">,</span><span class="tok-n">j</span><span class="tok-p">)</span><span class="tok-o">=</span><span class="tok-n">aux</span><span class="tok-p">.</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-n">uchar</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-o">+</span><span class="tok-n">mrow</span><span class="tok-p">,</span><span class="tok-n">j</span><span class="tok-o">-</span><span class="tok-n">mcol</span><span class="tok-p">);</span>
+    <span class="tok-p">}</span>
+  <span class="tok-p">}</span>
+
+  <span class="tok-c1">//terceiro quadrante</span>
+  <span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">i</span><span class="tok-o">=</span><span class="tok-n">mrow</span><span class="tok-p">;</span><span class="tok-n">i</span><span class="tok-o">&lt;</span><span class="tok-n">row</span><span class="tok-p">;</span><span class="tok-n">i</span><span class="tok-o">++</span><span class="tok-p">){</span>
+    <span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">j</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span><span class="tok-n">j</span><span class="tok-o">&lt;</span><span class="tok-n">mcol</span><span class="tok-p">;</span><span class="tok-n">j</span><span class="tok-o">++</span><span class="tok-p">){</span>
+      <span class="tok-n">image</span><span class="tok-p">.</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-n">uchar</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">,</span><span class="tok-n">j</span><span class="tok-p">)</span><span class="tok-o">=</span><span class="tok-n">aux</span><span class="tok-p">.</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-n">uchar</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-o">-</span><span class="tok-n">mrow</span><span class="tok-p">,</span><span class="tok-n">j</span><span class="tok-o">+</span><span class="tok-n">mcol</span><span class="tok-p">);</span>
+    <span class="tok-p">}</span>
+  <span class="tok-p">}</span>
+
+  <span class="tok-c1">//segundo quadrante</span>
+  <span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">i</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span><span class="tok-n">i</span><span class="tok-o">&lt;</span><span class="tok-n">mrow</span><span class="tok-p">;</span><span class="tok-n">i</span><span class="tok-o">++</span><span class="tok-p">){</span>
+    <span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">j</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span><span class="tok-n">j</span><span class="tok-o">&lt;</span><span class="tok-n">mcol</span><span class="tok-p">;</span><span class="tok-n">j</span><span class="tok-o">++</span><span class="tok-p">){</span>
+      <span class="tok-n">image</span><span class="tok-p">.</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-n">uchar</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">,</span><span class="tok-n">j</span><span class="tok-p">)</span><span class="tok-o">=</span><span class="tok-n">aux</span><span class="tok-p">.</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-n">uchar</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-o">+</span><span class="tok-n">mrow</span><span class="tok-p">,</span><span class="tok-n">j</span><span class="tok-o">+</span><span class="tok-n">mcol</span><span class="tok-p">);</span>
+    <span class="tok-p">}</span>
+  <span class="tok-p">}</span>
+
+  <span class="tok-c1">//quarto quadrante</span>
+  <span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">i</span><span class="tok-o">=</span><span class="tok-n">mrow</span><span class="tok-p">;</span><span class="tok-n">i</span><span class="tok-o">&lt;</span><span class="tok-n">row</span><span class="tok-p">;</span><span class="tok-n">i</span><span class="tok-o">++</span><span class="tok-p">){</span>
+    <span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">j</span><span class="tok-o">=</span><span class="tok-n">mcol</span><span class="tok-p">;</span><span class="tok-n">j</span><span class="tok-o">&lt;</span><span class="tok-n">col</span><span class="tok-p">;</span><span class="tok-n">j</span><span class="tok-o">++</span><span class="tok-p">){</span>
+      <span class="tok-n">image</span><span class="tok-p">.</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-n">uchar</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">,</span><span class="tok-n">j</span><span class="tok-p">)</span><span class="tok-o">=</span><span class="tok-n">aux</span><span class="tok-p">.</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-n">uchar</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-o">-</span><span class="tok-n">mrow</span><span class="tok-p">,</span><span class="tok-n">j</span><span class="tok-o">-</span><span class="tok-n">mcol</span><span class="tok-p">);</span>
+    <span class="tok-p">}</span>
+  <span class="tok-p">}</span>
+
+  <span class="tok-n">imshow</span><span class="tok-p">(</span><span class="tok-s">&quot;janela&quot;</span><span class="tok-p">,</span> <span class="tok-n">image</span><span class="tok-p">);</span>
+  <span class="tok-n">waitKey</span><span class="tok-p">();</span>
+  <span class="tok-k">return</span> <span class="tok-mi">0</span><span class="tok-p">;</span>
+<span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Abaixo encontram-se a imagem original e com os quatro quadrantes trocados.</p>
+</div>
+<div class="openblock float-group">
+<div class="content">
+<div id="fig_biel" class="imageblock left">
+<div class="content">
+<img src="imagens/biel.png" alt="Original">
+</div>
+<div class="title">Figure 3. Imagem Original</div>
+</div>
+<div id="fig_biel_depois" class="imageblock left">
+<div class="content">
+<img src="imagens/regioestrocadas.png" alt="Imagem processada">
+</div>
+<div class="title">Figure 4. Regiões Trocadas</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -634,7 +745,7 @@ $ ./&lt;Nome_do_arquivo_cpp&gt;</pre>
 <div class="sect2">
 <h3 id="_3_2_contabolhas_cppp">3.2 contabolhas.cppp</h3>
 <div class="paragraph">
-<p>Utilizando o código <a href="https://renanilana.github.io/codigos/labeling.cpp">labeling.cpp</a> como referência foi possível implementar um código que conte quantas bolhas existem na imagem, assim como quantas possuem buracos, independente de ser um buraco ou mais por bolha. O códig o<a href="https://renanilana.github.io/codigos/cbolhas.cpp">cbolhas.cpp</a></p>
+<p>Utilizando o código <a href="https://renanilana.github.io/codigos/labeling.cpp">labeling.cpp</a> como referência foi possível implementar um código que conte quantas bolhas existem na imagem, assim como quantas possuem buracos, independente de ser um buraco ou mais por bolha. O código <a href="https://renanilana.github.io/codigos/cbolhas.cpp">cbolhas.cpp</a></p>
 </div>
 <div id="exa_regions" class="listingblock">
 <div class="title">regions.cpp</div>
@@ -713,13 +824,13 @@ $ ./&lt;Nome_do_arquivo_cpp&gt;</pre>
 <div class="content">
 <img src="imagens/biel.png" alt="Original">
 </div>
-<div class="title">Figure 3. Imagem Original</div>
+<div class="title">Figure 5. Imagem Original</div>
 </div>
 <div id="fig_biel_depois" class="imageblock left">
 <div class="content">
 <img src="imagens/negativo.png" alt="Imagem processada">
 </div>
-<div class="title">Figure 4. Saída com Pontos (100,50) e (200,100)</div>
+<div class="title">Figure 6. Saída com Pontos (100,50) e (200,100)</div>
 </div>
 </div>
 </div>
@@ -729,7 +840,7 @@ $ ./&lt;Nome_do_arquivo_cpp&gt;</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-24 15:11:49 BRT
+Last updated 2018-03-24 19:20:00 -03
 </div>
 </div>
 <script type="text/x-mathjax-config">
