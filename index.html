@@ -519,7 +519,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_3_2_contabolhas_cpp">3.2 contabolhas.cpp</a></li>
 </ul>
 </li>
-<li><a href="#_4_manipulação_de_histrogramas">4. Manipulação de Histrogramas</a>
+<li><a href="#_4_manipulação_de_histogramas">4. Manipulação de Histogramas</a>
 <ul class="sectlevel2">
 <li><a href="#_4_1_equalize_cpp">4.1. equalize.cpp</a></li>
 </ul>
@@ -750,11 +750,7 @@ $ ./&lt;Nome_do_arquivo_cpp&gt;</pre>
 <div class="sect2">
 <h3 id="_3_2_contabolhas_cpp">3.2 contabolhas.cpp</h3>
 <div class="paragraph">
-<<<<<<< HEAD
 <p>Utilizando o código <a href="https://renanilana.github.io/codigos/labeling.cpp">labeling.cpp</a> como referência foi possível implementar um código que conte quantas bolhas existem na imagem, assim como quantas possuem buracos, independente de ser um buraco ou mais por bolha. O código <a href="https://renanilana.github.io/codigos/cbolhas.cpp">cbolhas.cpp</a> deve ignorar as bolhas que estejam em contato com as bordas da imagem, pois não da para saber se elas possuem buracos ou não.</p>
-=======
-<p>Utilizando o código <a href="https://renanilana.github.io/codigos/labeling.cpp">labeling.cpp</a> como referência foi possível implementar um código que conte quantas bolhas existem na imagem, assim como quantas possuem buracos, independente de ser um buraco ou mais por bolha. O código <a href="https://renanilana.github.io/codigos/cbolhas.cpp">cbolhas.cpp</a></p>
->>>>>>> 0c6c4e250d955bafd567ea8d55ea1ab96de98828
 </div>
 <div id="exa_regions" class="listingblock">
 <div class="title">contabolhas.cpp</div>
@@ -878,7 +874,7 @@ $ ./&lt;Nome_do_arquivo_cpp&gt;</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Primeiramente a imagem é carregada, as imagens utilizadas para testes, uma com bolhas com apenas um buraco e a outra com bolhas contendo mais de um buraco, foram as seguintes:</p>
+<p>Primeiramente a imagem é carregada, as imagens utilizadas para testes, uma com bolhas contendo apenas um buraco e a outra com bolhas contendo mais de um buraco, foram as seguintes:</p>
 </div>
 <div class="openblock float-group">
 <div class="content">
@@ -886,20 +882,38 @@ $ ./&lt;Nome_do_arquivo_cpp&gt;</pre>
 <div class="content">
 <img src="imagens/bolhas.png" alt="Original">
 </div>
-<<<<<<< HEAD
-<div class="title">Figure 3. Bolhas com um buraco.</div>
-=======
-<div class="title">Figure 5. Imagem Original</div>
->>>>>>> 0c6c4e250d955bafd567ea8d55ea1ab96de98828
+<div class="title">Figure 5. Bolhas com um buraco.</div>
 </div>
 <div id="fig_bolhas2" class="imageblock left">
 <div class="content">
 <img src="imagens/bolhas2.png" alt="Sem borda">
 </div>
-<<<<<<< HEAD
-<div class="title">Figure 4. Bolhas com vários buracos.)</div>
-=======
-<div class="title">Figure 6. Saída com Pontos (100,50) e (200,100)</div>
+<div class="title">Figure 6. Bolhas com vários buracos.)</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Para realizar a contagem das bolhas é feita a rotulação da imagem, onde cada bolha passa a ter uma coloração diferente, possibilitando a contagem. Feito isso é alterada a cor do fundo da imagem para um tom diferente dos que já existam na figura, com isso temos a diferenciação do fundo, bolhas e buracos. Para verificar se mais de um buraco pertence a mesma bolha, e consequentemente contar a quantidade de buracos que possuem bolhas, para cada buraco encontrado a sua bolha recebe um novo tom, caso exista um outro buraco é verificado se a bolha já foi pintada, caso sim os buracos pertencem a uma mesma bolha e ela é contabilizada apenas uma vez. A sequência de imagens gerada pelo programa é a seguinte:</p>
+</div>
+<div class="openblock float-group">
+<div class="content">
+<div id="fig_bolhasb" class="imageblock left">
+<div class="content">
+<img src="imagens/semborda.png" alt="Original">
+</div>
+<div class="title">Figure 7. Bolhas retiradas das bordas.</div>
+</div>
+<div id="fig_bolhasc" class="imageblock left">
+<div class="content">
+<img src="imagens/bolhacinza.png" alt="Sem borda">
+</div>
+<div class="title">Figure 8. Bolhas rotuladas.)</div>
+</div>
+<div id="fig_bolhasf" class="imageblock left">
+<div class="content">
+<img src="imagens/bolhafinal.png" alt="Sem borda">
+</div>
+<div class="title">Figure 9. Fundo alterado.)</div>
 </div>
 </div>
 </div>
@@ -907,7 +921,7 @@ $ ./&lt;Nome_do_arquivo_cpp&gt;</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_4_manipulação_de_histrogramas">4. Manipulação de Histrogramas</h2>
+<h2 id="_4_manipulação_de_histogramas">4. Manipulação de Histogramas</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_4_1_equalize_cpp">4.1. equalize.cpp</h3>
@@ -1000,14 +1014,13 @@ $ ./&lt;Nome_do_arquivo_cpp&gt;</pre>
 <div class="content">
 <img src="imagens/normal.png" alt="Original" width="300" height="200">
 </div>
-<div class="title">Figure 7. Original</div>
+<div class="title">Figure 10. Original</div>
 </div>
 <div id="fig_equalizada" class="imageblock left">
 <div class="content">
 <img src="imagens/equalize.png" alt="Imagem processada" width="300" height="200">
 </div>
-<div class="title">Figure 8. Equalizada</div>
->>>>>>> 0c6c4e250d955bafd567ea8d55ea1ab96de98828
+<div class="title">Figure 11. Equalizada</div>
 </div>
 </div>
 </div>
@@ -1017,11 +1030,7 @@ $ ./&lt;Nome_do_arquivo_cpp&gt;</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-<<<<<<< HEAD
-Last updated 2018-03-24 16:47:49 BRT
-=======
-Last updated 2018-03-25 16:27:34 -03
->>>>>>> 0c6c4e250d955bafd567ea8d55ea1ab96de98828
+Last updated 2018-03-25 22:45:55 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">
