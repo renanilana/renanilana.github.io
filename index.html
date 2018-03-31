@@ -1157,11 +1157,11 @@ Your browser does not support the video tag.
     <span class="tok-s">&quot;v - vertical</span><span class="tok-se">\n</span><span class="tok-s">&quot;</span>
 	<span class="tok-s">&quot;h - horizontal</span><span class="tok-se">\n</span><span class="tok-s">&quot;</span>
     <span class="tok-s">&quot;l - laplaciano</span><span class="tok-se">\n</span><span class="tok-s">&quot;</span>
-	<span class="tok-s">&quot;esc - sair</span><span class="tok-se">\n</span>
+	<span class="tok-s">&quot;esc - sair</span><span class="tok-se">\n</span><span class="tok-s">&quot;</span>
     <span class="tok-s">&quot;c - laplaciano do gaussiano</span><span class="tok-se">\n</span><span class="tok-s">	&quot;</span><span class="tok-p">;</span>
 <span class="tok-p">}</span>
 
-<span class="tok-kt">int</span> <span class="tok-n">main</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">argvc</span><span class="tok-p">,</span> <span class="tok-kt">char</span><span class="tok-o">**</span> <span class="tok-n">argv</span><span class="tok-p">){</span>
+<span class="tok-kt">int</span> <span class="tok-nf">main</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">argvc</span><span class="tok-p">,</span> <span class="tok-kt">char</span><span class="tok-o">**</span> <span class="tok-n">argv</span><span class="tok-p">){</span>
   <span class="tok-n">VideoCapture</span> <span class="tok-n">video</span><span class="tok-p">;</span>
   <span class="tok-kt">float</span> <span class="tok-n">media</span><span class="tok-p">[]</span> <span class="tok-o">=</span> <span class="tok-p">{</span><span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">,</span>
 				   <span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">,</span>
@@ -1186,7 +1186,7 @@ Your browser does not support the video tag.
              <span class="tok-mi">0</span><span class="tok-p">,</span><span class="tok-mi">0</span><span class="tok-p">,</span><span class="tok-o">-</span><span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">0</span><span class="tok-p">,</span><span class="tok-mi">0</span><span class="tok-p">};</span>
 
   <span class="tok-n">Mat</span> <span class="tok-n">cap</span><span class="tok-p">,</span> <span class="tok-n">frame</span><span class="tok-p">,</span> <span class="tok-n">frame32f</span><span class="tok-p">,</span> <span class="tok-n">frameFiltered</span><span class="tok-p">;</span>
-  <span class="tok-n">Mat</span> <span class="tok-nf">mask</span><span class="tok-p">(</span><span class="tok-mi">3</span><span class="tok-p">,</span><span class="tok-mi">3</span><span class="tok-p">,</span><span class="tok-n">CV_32F</span><span class="tok-p">),</span> <span class="tok-n">mask1</span><span class="tok-p">;</span>
+  <span class="tok-n">Mat</span> <span class="tok-n">mask</span><span class="tok-p">(</span><span class="tok-mi">3</span><span class="tok-p">,</span><span class="tok-mi">3</span><span class="tok-p">,</span><span class="tok-n">CV_32F</span><span class="tok-p">),</span> <span class="tok-n">mask1</span><span class="tok-p">;</span>
   <span class="tok-n">Mat</span> <span class="tok-n">result</span><span class="tok-p">,</span> <span class="tok-n">result1</span><span class="tok-p">;</span>
   <span class="tok-kt">double</span> <span class="tok-n">width</span><span class="tok-p">,</span> <span class="tok-n">height</span><span class="tok-p">,</span> <span class="tok-n">min</span><span class="tok-p">,</span> <span class="tok-n">max</span><span class="tok-p">;</span>
   <span class="tok-kt">int</span> <span class="tok-n">absolut</span><span class="tok-p">;</span>
@@ -1271,25 +1271,25 @@ Your browser does not support the video tag.
 </div>
 </div>
 <div class="paragraph">
-<p>Abaixo encontram-se a imagem original, a imagem apenas com o filtro laplaciano e a imagem com o a aplicação do filtro do laplaciano do gaussiano, respectivamente.</p>
+<p>Abaixo encontram-se a imagem original, a imagem apenas com o filtro laplaciano e a imagem com o a aplicação do filtro do laplaciano do gaussiano, respectivamente. É possível observar que as bordas são bem mais evidentes no vídeo com a aplicação do efeito laplaciano do gaussiano do que com o efeito laplaciano sozinho, apesar do ruído ser maior.</p>
 </div>
 <div class="openblock float-group">
 <div class="content">
 <div id="fig_normal" class="imageblock left">
 <div class="content">
-<img src="imagens/normal.png" alt="Original" width="300" height="200">
+<img src="imagens/semfiltro.png" alt="Original" width="300" height="200">
 </div>
 <div class="title">Figure 12. Original</div>
 </div>
 <div id="fig_lap" class="imageblock left">
 <div class="content">
-<img src="imagens/equalize.png" alt="Imagem processada" width="300" height="200">
+<img src="imagens/filtroL.png" alt="Imagem processada" width="300" height="200">
 </div>
 <div class="title">Figure 13. Filtro laplaciano</div>
 </div>
 <div id="fig_lapg" class="imageblock left">
 <div class="content">
-<img src="imagens/equalize.png" alt="Imagem processada" width="300" height="200">
+<img src="imagens/filtroLG.png" alt="Imagem processada" width="300" height="200">
 </div>
 <div class="title">Figure 14. Filtro laplaciano do gaussiano</div>
 </div>
@@ -1300,7 +1300,7 @@ Your browser does not support the video tag.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-27 19:44:04 -03
+Last updated 2018-03-31 12:01:40 -03
 </div>
 </div>
 <script type="text/x-mathjax-config">
