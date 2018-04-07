@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <opencv2/opencv.hpp>
 #include <cmath> 
@@ -6,6 +7,10 @@ using namespace cv;
 using namespace std;
 
 double alfa;
+
+int center_slider=0;
+int center_slider_max=100;
+
 int alfa_slider = 0;
 int alfa_slider_max = 100;
 
@@ -24,12 +29,30 @@ void on_trackbar_blend(int, void*){
 }
 
 void on_trackbar_line(int, void*){
-  image1.copyTo(imageTop);
-  int limit = top_slider*480/100;
+  image2.copyTo(imageTop);
+  
+  Size tamanho = image2.size();
+
+  int largura = tamanho.width;
+  int altura = tamanho.height;
+  int limit = top_slider*largura/100;
+  int base = center_slider*largura/100;
+
+ 
   if(limit > 0){
-	Mat tmp = image2(Rect(0, 0, 640, limit));
-	tmp.copyTo(imageTop(Rect(0, 0, 640, limit)));
+
+    
+    if(base >= 0 && base <= altura-limit){
+      Mat tmp = image1(Rect(0, base, largura,limit));
+      tmp.copyTo(imageTop(Rect(0, base, largura,limit)));
+    }
+
+    else{
+      Mat tmp = image1(Rect(0, 0, largura,limit));
+      tmp.copyTo(imageTop(Rect(0, 0, largura,limit)));
+    }
   }
+
   on_trackbar_blend(alfa_slider,0);
 }
 
@@ -66,6 +89,13 @@ int main(int argvc, char** argv){
 				  top_slider_max,
 				  on_trackbar_line );
   on_trackbar_line(top_slider, 0 );
+
+  sprintf( TrackbarName, "Center x %d", top_slider_max );
+  createTrackbar( TrackbarName, "addweighted",
+				  &center_slider,
+				  center_slider_max,
+				  on_trackbar_line );
+  on_trackbar_line(center_slider, 0 );
 
   waitKey(0);
   return 0;
