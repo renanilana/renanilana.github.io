@@ -1,0 +1,5 @@
+A quantidade de cores disponível para uma dada imagem depende da quantidade de bits usados na representação de cada cor. Com a imagem atual sendo representada em 8 bits, temos 256 tons de cinza disponíveis. Uma solução para o problema dado poderia ser aumentar a quantidade de bits para representar cada cor.
+
+Usando 10 bits, teria-se uma disponibilidade de 1024 tons de cinza. Usando 12 bits, teria-se 4096 tons de cinza.
+
+Outra solução para o problema também poderia ser trabalhar com a rotulação no sistema de cores RGB. Com três matrizes de cores para combinar, a quantidade diferente de rótulos também seria bem maior.
