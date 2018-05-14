@@ -525,7 +525,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_4_2_motiondetector_cpp">4.2. motiondetector.cpp</a></li>
 </ul>
 </li>
-<li><a href="#_5_filtragem_no_domínio_espacial_i">5. Filtragem no domínio espacial I</a></li>
+<li><a href="#_5_filtragem_no_domínio_espacial_i">5. Filtragem no domínio espacial I</a>
+<ul class="sectlevel2">
+<li><a href="#_5_1_laplaciano_do_gaussiano">5.1. Laplaciano do Gaussiano</a></li>
+</ul>
+</li>
 <li><a href="#_6_filtragem_no_domínio_espacial_ii">6. Filtragem no domínio espacial II</a>
 <ul class="sectlevel2">
 <li><a href="#_6_1_tilt_shift_para_imagens">6.1. Tilt-shift para imagens</a></li>
@@ -757,7 +761,15 @@ $ ./&lt;Nome_do_arquivo_cpp&gt;</pre>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_3_1_mais_de_255_objetos">3.1 Mais de 255 objetos</h3>
-
+<div class="paragraph">
+<p>A quantidade de cores disponível para uma dada imagem depende da quantidade de bits usados na representação de cada cor. Com a imagem atual sendo representada em 8 bits, temos 256 tons de cinza disponíveis para a rotulação. Uma solução para o problema dado poderia ser aumentar a quantidade de bits para representar cada cor.</p>
+</div>
+<div class="paragraph">
+<p>Usando 10 bits, teria-se uma disponibilidade de 1024 tons de cinza. Usando 12 bits, teria-se 4096 tons de cinza, e assim por diante.</p>
+</div>
+<div class="paragraph">
+<p>Outra solução para o problema também poderia ser trabalhar com a rotulação no sistema de cores RGB. Com três matrizes de cores para combinar, a quantidade diferente de rótulos também seria bem maior.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_3_2_contabolhas_cpp">3.2 contabolhas.cpp</h3>
@@ -1138,6 +1150,8 @@ Your browser does not support the video tag.
 <div class="sect1">
 <h2 id="_5_filtragem_no_domínio_espacial_i">5. Filtragem no domínio espacial I</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_5_1_laplaciano_do_gaussiano">5.1. Laplaciano do Gaussiano</h3>
 <div class="paragraph">
 <p>Esse exercício constou em acrescentar mais uma funcionalidade ao exemplo <a href="https://renanilana.github.io/codigos/filtroespacial.cpp">filtroespacial.cpp</a> permitindo que seja calculado o laplaciano do gaussiano de uma imagem, comparando-o com o resultado do filtro laplaciano apenas.</p>
 </div>
@@ -1302,6 +1316,7 @@ Your browser does not support the video tag.
 <img src="imagens/filtroLG.png" alt="Imagem processada" width="300" height="200">
 </div>
 <div class="title">Figure 14. Filtro laplaciano do gaussiano</div>
+</div>
 </div>
 </div>
 </div>
@@ -1707,7 +1722,7 @@ Your browser does not support the video tag.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-05-13 22:56:55 -03
+Last updated 2018-05-13 23:02:09 -03
 </div>
 </div>
 <script type="text/x-mathjax-config">
